@@ -25,7 +25,7 @@ export class WishService {
       }
     });
 
-    return this.http.get('assets/wishes.json?format=json', options);
+    return this.http.get('/wishes.json', options);
   }
 
 }
