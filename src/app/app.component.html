@@ -3,13 +3,15 @@
 		(addWish)="items.push($event)"
 	></add-wish-form>
 
-	<wish-filter></wish-filter>
+	<wish-filter
+		[(filter)]="filter"
+	></wish-filter>
 
 	<div class="row mt-3">
 		<div class="col-sm-4">
 			<wish-list
 				[wishes]="items.filter(filter)"
-				></wish-list>
+			></wish-list>
 		</div>
 	</div>
 </div>
