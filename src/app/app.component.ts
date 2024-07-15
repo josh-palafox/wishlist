@@ -22,5 +22,7 @@ export class AppComponent {
     })
   }
 
-  filter: any;
+  filter (item: WishItem):boolean {
+    return !item.isComplete;
+  }
 }
