@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { WishItem } from '../../shared/modules/wishItem';
 import { OutletContext } from '@angular/router';
-import events from '../../shared/services/EventService';
+import {EventService} from '../../shared/services/EventService';
 
 @Component({
 	selector: 'wish-list-item',
@@ -14,13 +14,13 @@ export class WishListItemComponent implements OnInit {
 	get cssClasses() {
 	return {'strikeout text-muted': this.wish.isComplete};
 	}
-	constructor() {}
+	constructor(private events: EventService) {}
 
 	ngOnInit(): void {
 	}
 
 	removeWish() {
-	events.emit('removeWish', this.wish);
+		this.events.emit('removeWish', this.wish);
 	}
 
 	toggleFulfilled() {
