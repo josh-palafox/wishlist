@@ -26,5 +26,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  filter: any;
+  filter (item: WishItem):boolean {
+    return !item.isComplete;
+  }
 }
