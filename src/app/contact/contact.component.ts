@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {createInvalidDomainValidator} from  './invalidEmailDomain'
+
+const invalidEmailDomain = createInvalidDomainValidator(['yahoo.com'])
 
 @Component({
   selector: 'app-contact',
@@ -12,14 +15,18 @@ export class ContactComponent {
   ngOnInit(): void{
   }
 
-  senderNameControl = new FormControl('');
-  senderEmailControl = new FormControl('');
-   senderMessageControl = new FormControl('');
+  contactForm = new FormGroup({
+    senderName: new FormControl('', Validators.required),
+    senderEmail: new FormControl('', [Validators.required, Validators.email, invalidEmailDomain]),
+    senderMessage: new FormControl('', [Validators.required, Validators.minLength(10)])
+  });
 
   submitForm() {
-    if(this.senderNameControl.dirty) {
-      alert('you changed the name field');
-    }
+
+    console.log(this.contactForm.valid);
+    // if(this.senderNameControl.dirty) {
+    //   alert('you changed the name field');
+    // }
   }
 
 }
